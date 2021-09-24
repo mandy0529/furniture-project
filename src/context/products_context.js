@@ -36,12 +36,24 @@ export const ProductsProvider = ({children}) => {
     }
   };
 
+  const fetchSingleProduct = async (url) => {
+    dispatch({type: GET_SINGLE_PRODUCT_BEGIN});
+    try {
+      const {data} = await axios.get(url);
+      dispatch({type: GET_SINGLE_PRODUCT_SUCCESS, payload: data});
+    } catch {
+      dispatch({type: GET_SINGLE_PRODUCT_ERROR});
+    }
+  };
+
   useEffect(() => {
     fetchProducts(url);
   }, []);
 
   return (
-    <ProductsContext.Provider value={{...state, openSidebar, closeSidebar}}>
+    <ProductsContext.Provider
+      value={{...state, openSidebar, closeSidebar, fetchSingleProduct}}
+    >
       {children}
     </ProductsContext.Provider>
   );

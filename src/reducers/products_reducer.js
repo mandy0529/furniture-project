@@ -16,6 +16,9 @@ export const initialState = {
   products_error: false,
   products: [],
   featured_products: [],
+  single_loading: false,
+  single_error: false,
+  singleProduct: [],
 };
 
 const products_reducer = (state, action) => {
@@ -45,6 +48,23 @@ const products_reducer = (state, action) => {
         ...state,
         products_error: true,
         products_loading: false,
+      };
+
+    case GET_SINGLE_PRODUCT_BEGIN:
+      return {...state, single_loading: true, single_error: false};
+
+    case GET_SINGLE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        single_loading: false,
+        singleProduct: action.payload,
+      };
+
+    case GET_SINGLE_PRODUCT_ERROR:
+      return {
+        ...state,
+        single_error: true,
+        single_loading: false,
       };
     default:
       throw new Error(`No Matching "${action.type}" - action type`);
