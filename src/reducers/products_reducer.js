@@ -12,6 +12,10 @@ import {
 export const initialState = {
   sidebar: false,
   isOpen: false,
+  products_loading: false,
+  products_error: false,
+  products: [],
+  featured_products: [],
 };
 
 const products_reducer = (state, action) => {
@@ -21,6 +25,27 @@ const products_reducer = (state, action) => {
 
     case SIDEBAR_CLOSE:
       return {...state, sidebar: false, isOpen: false};
+
+    case GET_PRODUCTS_BEGIN:
+      return {...state, products_loading: true};
+
+    case GET_PRODUCTS_SUCCESS:
+      const featured_products = action.payload.filter(
+        (item) => item.featured === true
+      );
+      return {
+        ...state,
+        products_loading: false,
+        products: action.payload,
+        featured_products,
+      };
+
+    case GET_PRODUCTS_ERROR:
+      return {
+        ...state,
+        products_error: true,
+        products_loading: false,
+      };
     default:
       throw new Error(`No Matching "${action.type}" - action type`);
   }
