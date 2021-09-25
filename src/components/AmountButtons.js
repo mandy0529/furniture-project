@@ -1,9 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {FaPlus, FaMinus} from 'react-icons/fa';
 
-const AmountButtons = () => {
-  return <Wrapper>amount buttons </Wrapper>;
+const AmountButtons = ({stock}) => {
+  const [amount, setAmount] = useState(1);
+
+  const handelPlus = () => {
+    setAmount((current) => {
+      if (current === stock) {
+        return current;
+      }
+      return current + 1;
+    });
+  };
+
+  const handleMinus = () => {
+    setAmount((current) => {
+      if (current === 1) {
+        return current;
+      }
+      return current - 1;
+    });
+  };
+  return (
+    <Wrapper>
+      <button onClick={handleMinus}>
+        <FaMinus />
+      </button>
+      <h2>{amount}</h2>
+      <button onClick={handelPlus}>
+        <FaPlus />
+      </button>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`

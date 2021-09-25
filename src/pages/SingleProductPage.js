@@ -45,16 +45,47 @@ const SingleProductPage = () => {
   if (error) {
     return <Error />;
   }
-  if (data) {
-    return <h2>data</h2>;
-  }
+  const {
+    name,
+    price,
+    description,
+    stock,
+    stars,
+    reviews,
+    id: sku,
+    company,
+    images,
+  } = data;
   return (
     <Wrapper>
-      {data &&
-        data.map((item) => {
-          const {id, name, price, images: img} = item;
-          console.log(id, name, price, img);
-        })}
+      <div className="section section-center page">
+        <Link to="/products" className="btn">
+          back to products
+        </Link>
+        <div className="product-center">
+          <ProductImages images={images} />
+          <section className="content">
+            <h2>{name}</h2>
+            <Stars stars={stars} reviews={reviews} />
+            <h5 className="price">{formatPrice(price)}</h5>
+            <p className="desc">{description}</p>
+            <p className="info">
+              <span>Available :</span>
+              {stock > 0 ? 'In stock' : 'Out of stock'}
+            </p>
+            <p className="info">
+              <span>sku :</span>
+              {sku}
+            </p>
+            <p className="info">
+              <span>brand :</span>
+              {company}
+            </p>
+            <hr />
+            {stock > 0 && <AddToCart data={data} />}
+          </section>
+        </div>
+      </div>
     </Wrapper>
   );
 };

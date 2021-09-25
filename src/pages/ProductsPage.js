@@ -6,6 +6,15 @@ const ProductsPage = () => {
   return (
     <main>
       <PageHero />
+      <Wrapper className="page">
+        <div className="section-center products">
+          <Filters />
+          <div>
+            <Sort />
+            <ProductList />
+          </div>
+        </div>
+      </Wrapper>
     </main>
   );
 };
