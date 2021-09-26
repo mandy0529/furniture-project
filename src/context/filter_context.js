@@ -58,8 +58,8 @@ export const FilterProvider = ({children}) => {
   }, [products]);
 
   useEffect(() => {
-    dispatch({type: SORT_PRODUCTS});
     dispatch({type: FILTER_PRODUCTS});
+    dispatch({type: SORT_PRODUCTS});
   }, [state.sort, products, state.filter]);
 
   return (
