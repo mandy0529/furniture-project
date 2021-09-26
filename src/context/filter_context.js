@@ -30,17 +30,48 @@ export const FilterProvider = ({children}) => {
     dispatch({type: UPDATE_SORT, payload: value});
   };
 
+  const updateFilter = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    if (name === 'category') {
+      value = e.target.textContent;
+    }
+    if (name === 'colors') {
+      value = e.target.value;
+    }
+    if (name === 'price') {
+      value = Number(value);
+    }
+    if (name === 'shipping') {
+      value = e.target.checked;
+    }
+
+    dispatch({type: UPDATE_FILTERS, payload: {name, value}});
+  };
+
+  const clearFilter = () => {
+    dispatch({type: CLEAR_FILTERS});
+  };
+
   useEffect(() => {
     dispatch({type: LOAD_PRODUCTS, payload: products});
   }, [products]);
 
   useEffect(() => {
     dispatch({type: SORT_PRODUCTS});
-  }, [state.sort, products]);
+    dispatch({type: FILTER_PRODUCTS});
+  }, [state.sort, products, state.filter]);
 
   return (
     <FilterContext.Provider
-      value={{...state, controlGridView, controlListView, updateSort}}
+      value={{
+        ...state,
+        controlGridView,
+        controlListView,
+        updateSort,
+        updateFilter,
+        clearFilter,
+      }}
     >
       {children}
     </FilterContext.Provider>
