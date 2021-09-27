@@ -7,7 +7,27 @@ import AmountButtons from './AmountButtons';
 
 const AddToCart = ({data}) => {
   const {id, stock, colors} = data;
+  const {addToCart} = useCartContext();
   const [mainColor, setMainColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  const handlePlus = () => {
+    setAmount((current) => {
+      if (current === stock) {
+        return current;
+      }
+      return current + 1;
+    });
+  };
+
+  const handleMinus = () => {
+    setAmount((current) => {
+      if (current === 1) {
+        return current;
+      }
+      return current - 1;
+    });
+  };
 
   return (
     <Wrapper>
@@ -31,8 +51,16 @@ const AddToCart = ({data}) => {
         </div>
       </div>
       <div className="btn-container">
-        <AmountButtons stock={stock} />
-        <Link to="/cart" className="btn">
+        <AmountButtons
+          amount={amount}
+          handlePlus={handlePlus}
+          handleMinus={handleMinus}
+        />
+        <Link
+          to="/cart"
+          className="btn"
+          onClick={() => addToCart(id, mainColor, amount, data)}
+        >
           add to cart
         </Link>
       </div>
