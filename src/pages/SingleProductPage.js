@@ -3,14 +3,7 @@ import {useParams, useHistory} from 'react-router-dom';
 import {useProductsContext} from '../context/products_context';
 import {single_product_url as url} from '../utils/constants';
 import {formatPrice} from '../utils/helpers';
-import {
-  Loading,
-  Error,
-  ProductImages,
-  AddToCart,
-  Stars,
-  PageHero,
-} from '../components';
+import {Loading, Error, ProductImages, AddToCart, Stars} from '../components';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
@@ -27,6 +20,7 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
+    // eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {
@@ -37,6 +31,7 @@ const SingleProductPage = () => {
       }, 3000);
     }
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line
   }, [error]);
 
   if (loading) {

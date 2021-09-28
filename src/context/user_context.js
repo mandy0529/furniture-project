@@ -10,7 +10,12 @@ export const UserProvider = ({children}) => {
   const [myUser, setMyUser] = useState(null);
 
   useEffect(() => {
-    console.log({isAuthenticated, user, isLoading});
+    if (isAuthenticated) {
+      setMyUser(user);
+    } else {
+      setMyUser(null);
+    }
+    // eslint-disable-next-line
   }, [isAuthenticated]);
 
   return (
