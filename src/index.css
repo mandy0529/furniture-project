@@ -214,7 +214,8 @@ p {
   text-align: center;
   font-size: 1.5rem;
   background-color: #fbf2d4;
-  margin-top: 3rem;
+  margin: 3rem 0;
+  padding: 1rem 0;
 }
 .homepage a {
   margin: 0 1rem;
