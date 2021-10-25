@@ -18,6 +18,7 @@ import CartContent from './CarContent';
 import PageHero from './PageHero';
 import StripeCheckout from './StripeCheckout';
 import Router from './Router';
+
 export {
   FeaturedProducts,
   Navbar,
