@@ -204,3 +204,18 @@ p {
 .page {
   min-height: calc(100vh - (20vh + 10rem));
 }
+
+/* drop banner */
+.drop-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: #fbf2d4;
+  padding: 1rem;
+}
+.homepage a {
+  margin: 0 1rem;
+}

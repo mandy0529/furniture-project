@@ -7,35 +7,40 @@ import {links} from '../utils/constants';
 import CartButtons from './CartButtons';
 import {useProductsContext} from '../context/products_context';
 import {useUserContext} from '../context/user_context';
+import DropBanner from './DropBanner';
 
 const Nav = () => {
   const {myUser} = useUserContext();
   const {openSidebar} = useProductsContext();
   return (
-    <NavContainer>
-      <div className="nav-center">
-        <div className="nav-header">
-          <Link to="/">
-            <img src={logo} alt="home-logo" />
-          </Link>
-          <button onClick={openSidebar} type="button" className="nav-toggle">
-            <FaBars />
-          </button>
+    <>
+      <NavContainer>
+        <div className="nav-center">
+          <div className="nav-header">
+            <Link to="/">
+              <img src={logo} alt="home-logo" />
+            </Link>
+            <button onClick={openSidebar} type="button" className="nav-toggle">
+              <FaBars />
+            </button>
+          </div>
+          <ul className="nav-links">
+            {links.map((link) => {
+              const {text, url, id} = link;
+              return (
+                <Link key={id} to={url}>
+                  {text}
+                </Link>
+              );
+            })}
+            {myUser && <Link to="/checkout">checkout</Link>}
+          </ul>
+          <CartButtons />
         </div>
-        <ul className="nav-links">
-          {links.map((link) => {
-            const {text, url, id} = link;
-            return (
-              <Link key={id} to={url}>
-                {text}
-              </Link>
-            );
-          })}
-          {myUser && <Link to="/checkout">checkout</Link>}
-        </ul>
-        <CartButtons />
-      </div>
-    </NavContainer>
+      </NavContainer>
+
+      <DropBanner />
+    </>
   );
 };
 
