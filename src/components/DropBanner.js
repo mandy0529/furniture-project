@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 const google = 'https://www.google.com/intl/ko/chrome/';
+const edge = 'https://www.microsoft.com/ko-kr/edge';
 
 const DropBanner = () => {
   const [isIe, setIsIe] = useState(false);
@@ -29,7 +30,7 @@ const DropBanner = () => {
             <a href={google} target="_blank" rel="noreferrer">
               Chrome
             </a>
-            <a href={google} target="_blank" rel="noreferrer">
+            <a href={edge} target="_blank" rel="noreferrer">
               Edge
             </a>
           </div>
