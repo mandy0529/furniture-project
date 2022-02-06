@@ -30,6 +30,10 @@ const DropBanner = () => {
             <a href={google} target="_blank" rel="noreferrer">
               Chrome
             </a>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg"
+              alt="chrome"
+            />
             <a href={edge} target="_blank" rel="noreferrer">
               Edge
             </a>

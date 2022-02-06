@@ -10,6 +10,7 @@ import {
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
 } from '../actions';
+
 import {useProductsContext} from './products_context';
 
 const FilterContext = React.createContext();
@@ -45,7 +46,6 @@ export const FilterProvider = ({children}) => {
     if (name === 'shipping') {
       value = e.target.checked;
     }
-
     dispatch({type: UPDATE_FILTERS, payload: {name, value}});
   };
 
@@ -60,7 +60,7 @@ export const FilterProvider = ({children}) => {
   useEffect(() => {
     dispatch({type: FILTER_PRODUCTS});
     dispatch({type: SORT_PRODUCTS});
-  }, [state.sort, products, state.filter]);
+  }, [state.sort, state.filter]);
 
   return (
     <FilterContext.Provider
